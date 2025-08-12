@@ -1,0 +1,23 @@
+{
+  "name": "tide-times-scraper",
+  "version": "1.0.0",
+  "description": "Scraper for tide times data with Supabase integration",
+  "main": "scraper.js",
+  "scripts": {
+    "start": "node scraper.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "@supabase/supabase-js": "^2.38.0",
+    "dotenv": "^16.3.1",
+    "cheerio": "^1.0.0-rc.12",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "supabase": "^1.142.2"
+  },
+  "keywords": ["tide-times", "scraping", "supabase"],
+  "author": "",
+  "license": "MIT"
+}

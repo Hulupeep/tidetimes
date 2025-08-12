@@ -1,0 +1,47 @@
+{
+  "name": "Tide Times Scraper",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers-contrib/features/supabase-cli:1": {}
+  },
+  "postCreateCommand": "npm install && npx supabase start",
+  "forwardPorts": [54321, 54322, 54323, 54324, 54421],
+  "portsAttributes": {
+    "54321": {
+      "label": "Supabase API",
+      "onAutoForward": "notify"
+    },
+    "54322": {
+      "label": "PostgreSQL",
+      "onAutoForward": "silent"
+    },
+    "54323": {
+      "label": "Supabase Studio",
+      "onAutoForward": "notify"
+    },
+    "54324": {
+      "label": "Inbucket",
+      "onAutoForward": "silent"
+    },
+    "54421": {
+      "label": "Supabase API (Alt)",
+      "onAutoForward": "silent"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
+      ]
+    }
+  },
+  "remoteEnv": {
+    "SUPABASE_URL": "http://localhost:54321",
+    "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0"
+  }
+}
