@@ -20,13 +20,20 @@ echo "Setup started at $(date)" > "$LOG_FILE"
     npm install --no-audit --no-fund 2>&1 || echo "npm install continuing..."
     
     # Claude tools
-    echo "🤖 Installing Claude tools..."
-    if ! command -v claude-code &> /dev/null; then
+    echo "🤖 Installing Claude Code..."
+    if ! command -v claude &> /dev/null; then
+        echo "Installing Claude Code globally..."
         npm install -g @anthropic-ai/claude-code --no-audit --no-fund 2>&1 || true
+        # Create claude alias if needed
+        if [ -f /usr/local/lib/node_modules/@anthropic-ai/claude-code/dist/cli.js ]; then
+            ln -sf /usr/local/lib/node_modules/@anthropic-ai/claude-code/dist/cli.js /usr/local/bin/claude 2>&1 || true
+        fi
     fi
     
-    # Skip permissions
-    claude --dangerously-skip-permissions 2>&1 || true
+    # Skip permissions (only if claude exists)
+    if command -v claude &> /dev/null; then
+        claude --dangerously-skip-permissions 2>&1 || true
+    fi
     
     # Claude Flow
     echo "🔄 Setting up Claude Flow..."
@@ -34,7 +41,7 @@ echo "Setup started at $(date)" > "$LOG_FILE"
     
     # Agents (sparse checkout)
     echo "🤖 Installing agents..."
-    AGENTS_DIR="/workspaces/tidetimes/agents"
+    AGENTS_DIR="/workspaces/Agentic_Codespace/agents"
     if [ ! -d "$AGENTS_DIR" ] || [ $(find "$AGENTS_DIR" -name "*.md" 2>/dev/null | wc -l) -lt 50 ]; then
         mkdir -p "$AGENTS_DIR"
         TEMP_DIR="/tmp/agents-$$"
@@ -55,9 +62,15 @@ echo "Setup started at $(date)" > "$LOG_FILE"
     
     # Supabase
     echo "🗄️ Starting Supabase..."
-    cd /workspaces/tidetimes
+    cd /workspaces/Agentic_Codespace
     npx supabase start 2>&1 || true
     npx supabase db push 2>&1 || true
+    
+    # Import tide data
+    echo "🌊 Importing tide data..."
+    if [ -f "/workspaces/Agentic_Codespace/import-tide-data.js" ]; then
+        node /workspaces/Agentic_Codespace/import-tide-data.js 2>&1 || echo "Tide data import will retry later"
+    fi
     
     # API key setup
     if [ ! -z "$ANTHROPIC_API_KEY" ]; then

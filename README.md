@@ -14,21 +14,36 @@ Sets up a **complete agentic coding environment** in 2 minutes:
 
 ## 🚀 Quick Start (2 Minutes)
 
-### Option A: Using Claude Pro/Teams Subscription
-1. **Launch Codespace**: [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespace.new/Hulupeep/tidetimes)
-2. **Login to Claude**: When terminal opens, type:
+### Step 1: Launch Your Codespace
+
+1. **You're already here!** (This repository)
+2. Click the green **Code** button above
+3. Click on **Codespaces** tab
+4. Click **Create codespace on master**
+
+![Create Codespace](ss3.png)
+
+### Step 2: Choose Your Claude Access Method
+
+You have **two ways** to use Claude Code in this setup:
+
+#### Option A: With Claude Pro/Teams Subscription
+If you already have a Claude.ai subscription:
+1. When terminal opens in Codespace, type:
    ```bash
    claude --dangerously-skip-permissions
    ```
-   Follow browser login (uses your Claude.ai subscription)
-3. **Start Building!** Copy any prompt from below
+2. Follow browser login (uses your existing Claude.ai subscription)
+3. **That's it!** Start using Claude immediately
 
-### Option B: Using API Key
-1. **Add API Key**: Go to Settings → Secrets → Codespaces → New secret
+#### Option B: With API Key (No Subscription Needed)
+If you want to use API credits instead:
+1. **Before launching Codespace**, add your API key:
+   - Go to Settings → Secrets → Codespaces → New secret
    - Name: `ANTHROPIC_API_KEY`
    - Value: Get from https://console.anthropic.com/settings/keys
-2. **Launch Codespace**: Click badge above
-3. **Start Building!** Claude is ready immediately
+2. Launch Codespace (as shown above)
+3. **Claude works automatically!** No login needed
 
 ## 🏊 Your Challenge: Build a Swimming/Surfing/Safety System
 
@@ -91,10 +106,43 @@ https://erddap.marine.ie/erddap/tabledap/IWBNetwork.csv?time,SeaTemperature&stat
 - Save as temperature-chart.html"
 ```
 
-## 📚 What's in Your Database
+## 📚 What's in Your Database + How to View It
 
-You have **366 days of real tide data** for Galway, Ireland:
+### 🔍 View Your Data in Supabase Studio (Visual Interface)
 
+1. **Open Supabase Studio** (auto-opens in Codespace):
+   - Click the **Ports** tab at bottom of VS Code
+   - Find port **54323** labeled "Supabase Studio"
+   - Click the globe icon to open in browser
+   - **No login needed** - just click through!
+
+2. **Browse the tide_times table**:
+   - Click **Table Editor** in left sidebar
+   - Select **tide_times** table
+   - See all 366 days of data with sorting/filtering
+   - Run SQL queries in the **SQL Editor** tab
+
+### 📊 Your Tide Data (366 Days for Galway, Ireland)
+
+**First, Make Sure Supabase is Running:**
+```bash
+# Check if Supabase is running
+npx supabase status
+
+# If not running, start it:
+npx supabase start
+
+# Import the tide data (if not already done)
+node import-tide-data.js
+```
+
+**Quick Database Check:**
+```bash
+# See what's in your database right now
+node examples/view-database.js
+```
+
+**SQL Queries You Can Run:**
 ```sql
 -- Table: tide_times
 -- Columns: date, morning_high_time, morning_high_height, 
@@ -201,17 +249,35 @@ Built something cool? Share it:
 
 ### Claude not responding?
 ```bash
-# If using subscription:
+# Quick fix - run the setup script:
+./quick-setup.sh
+
+# Or manually install:
+npm install -g @anthropic-ai/claude-code
+
+# Then login (if using subscription):
 claude --dangerously-skip-permissions
 
-# If using API key:
+# Check API key (if using that method):
 echo $ANTHROPIC_API_KEY  # Should show your key
+
+# If 'claude' command not found, use npx:
+npx @anthropic-ai/claude-code "hello"
 ```
 
 ### Database not connecting?
 ```bash
-npx supabase status      # Check if running
-npx supabase start       # Start if needed
+# Step 1: Check if Supabase is running
+npx supabase status
+
+# Step 2: If not running, start it
+npx supabase start
+
+# Step 3: Import tide data
+node import-tide-data.js
+
+# Step 4: Test the connection
+node examples/view-database.js
 ```
 
 ### Want to see what's installed?

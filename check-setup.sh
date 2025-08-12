@@ -30,7 +30,7 @@ else
 fi
 
 # Check Agents
-AGENT_COUNT=$(ls -1 /workspaces/tidetimes/agents/*.md 2>/dev/null | wc -l)
+AGENT_COUNT=$(ls -1 /workspaces/Agentic_Codespace/agents/*.md 2>/dev/null | wc -l)
 if [ "$AGENT_COUNT" -gt 100 ]; then
     echo "✅ AI Agents: $AGENT_COUNT agents installed"
 elif [ "$AGENT_COUNT" -gt 0 ]; then
