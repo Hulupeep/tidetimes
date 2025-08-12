@@ -6,7 +6,8 @@
     "ghcr.io/devcontainers-contrib/features/supabase-cli:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-  "postCreateCommand": ".devcontainer/setup.sh",
+  "postCreateCommand": "chmod +x .devcontainer/setup.sh && .devcontainer/setup.sh",
+  "waitFor": "postCreateCommand",
   "forwardPorts": [54321, 54322, 54323, 54324, 54421],
   "portsAttributes": {
     "54321": {
