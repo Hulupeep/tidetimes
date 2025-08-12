@@ -1,0 +1,1 @@
+IRISH MARINE INSTITUTE DATA REPORT\n==================================================\nGenerated: 2025-08-12 10:17:42\n\n\nDATA SOURCES:\n  • Wave Buoys: 6/6 active\n  • Weather Stations: 2 active\n  • Tide Gauges: 1 active\n\n\nFor detailed data, see CSV files in the docs/ directory.
