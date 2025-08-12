@@ -62,11 +62,14 @@ echo ""
 
 # Check if API key is set
 if [ -z "$ANTHROPIC_API_KEY" ]; then
-    echo "⚠️  ANTHROPIC_API_KEY not set. Add it to Codespace secrets:"
-    echo "   1. Go to Settings → Secrets → Codespaces"
-    echo "   2. Add secret: ANTHROPIC_API_KEY"
-    echo "   3. Restart your Codespace"
+    echo "⚠️  No Anthropic API key detected."
+    echo ""
+    echo "You have two options:"
+    echo "1. Use Claude Code subscription: Run 'claude --dangerously-skip-permissions'"
+    echo "2. Add API key to Codespace secrets (see WELCOME.md for details)"
     echo ""
 fi
 
 echo "🎉 Happy coding with Claude AI!"
+echo ""
+echo "📖 Opening WELCOME.md with instructions..."

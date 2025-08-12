@@ -7,6 +7,7 @@
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "postCreateCommand": "chmod +x .devcontainer/setup.sh && .devcontainer/setup.sh",
+  "postStartCommand": "code WELCOME.md",
   "waitFor": "postCreateCommand",
   "forwardPorts": [54321, 54322, 54323, 54324, 54421],
   "portsAttributes": {
