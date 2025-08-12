@@ -1,11 +1,12 @@
 {
-  "name": "Tide Times Scraper",
+  "name": "Tide Times Scraper with Claude AI",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/devcontainers-contrib/features/supabase-cli:1": {}
+    "ghcr.io/devcontainers-contrib/features/supabase-cli:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-  "postCreateCommand": "npm install && npx supabase start",
+  "postCreateCommand": ".devcontainer/setup.sh",
   "forwardPorts": [54321, 54322, 54323, 54324, 54421],
   "portsAttributes": {
     "54321": {
@@ -36,12 +37,29 @@
         "esbenp.prettier-vscode",
         "ms-azuretools.vscode-docker",
         "mtxr.sqltools",
-        "mtxr.sqltools-driver-pg"
-      ]
+        "mtxr.sqltools-driver-pg",
+        "Continue.continue"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash",
+            "icon": "terminal-bash"
+          }
+        }
+      }
     }
   },
   "remoteEnv": {
     "SUPABASE_URL": "http://localhost:54321",
-    "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0"
+    "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0",
+    "CLAUDE_CODE_DANGEROUSLY_SKIP_PERMISSIONS": "true"
+  },
+  "secrets": {
+    "ANTHROPIC_API_KEY": {
+      "description": "Your Anthropic API key for Claude AI",
+      "documentationUrl": "https://console.anthropic.com/settings/keys"
+    }
   }
 }

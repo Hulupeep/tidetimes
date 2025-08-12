@@ -10,17 +10,38 @@ A Node.js application that scrapes tide times data from the Port of Galway websi
 - Extracts morning/afternoon high/low water times and heights
 - Batch processing for efficient database operations
 - Duplicate handling with upsert operations
+- **AI-Powered Development**: Integrated Claude Code and Claude Flow for SPARC methodology
 
 ## Setup
 
 ### GitHub Codespaces (Recommended for Cloud Development)
 
-This project is configured to run in GitHub Codespaces with automatic Supabase setup.
+This project is configured to run in GitHub Codespaces with automatic Supabase setup, Claude Code, and Claude Flow.
 
-1. Open the repository in GitHub Codespaces
-2. Wait for the container to build and Supabase to start automatically
-3. Access Supabase Studio through the forwarded port (54323)
-4. The environment is pre-configured with all necessary tools
+#### Setup Steps:
+
+1. **Add your Anthropic API Key to GitHub Secrets**:
+   - Go to Settings → Secrets and variables → Codespaces
+   - Click "New repository secret"
+   - Name: `ANTHROPIC_API_KEY`
+   - Value: Your API key from https://console.anthropic.com/settings/keys
+
+2. **Create a Codespace**:
+   - Click the green "Code" button → "Codespaces" tab
+   - Click "Create codespace on master"
+
+3. **Automatic Setup**:
+   The container will automatically:
+   - Install Node.js dependencies
+   - Start Supabase locally
+   - Install Claude Code and Claude Flow
+   - Configure SPARC development environment
+   - Forward all necessary ports
+
+4. **Access Points**:
+   - Supabase Studio: Port 54323
+   - PostgreSQL: Port 54322
+   - Claude AI tools ready in terminal
 
 ### Local Development
 
@@ -92,3 +113,50 @@ The tide data is stored in a `tide_times` table with proper indexing for locatio
 - Graceful error recovery with batch processing
 - Comprehensive logging of success/failure counts
 - Duplicate prevention with unique constraints
+
+## AI Development with Claude
+
+This project includes Claude Code and Claude Flow for AI-assisted development using the SPARC methodology.
+
+### Claude Code Commands
+```bash
+# Basic usage
+claude --help                    # Show help
+claude "explain this code"       # Ask Claude about code
+
+# Development tasks
+claude "add error handling to scraper.js"
+claude "write tests for import-tide-data.js"
+claude "optimize database queries"
+```
+
+### Claude Flow SPARC Commands
+```bash
+# List available SPARC modes
+npx claude-flow sparc modes
+
+# Run specific development modes
+npx claude-flow sparc run spec-pseudocode "design batch processing improvement"
+npx claude-flow sparc run architect "design real-time tide alerts system"
+npx claude-flow sparc tdd "implement tide prediction algorithm"
+npx claude-flow sparc run debug "fix puppeteer timeout issues"
+
+# Quick AI coordination
+npx claude-flow swarm "add data validation to scraper"
+
+# Memory management
+npx claude-flow memory store tide_specs "tide calculation requirements"
+npx claude-flow memory query tide_implementation
+```
+
+### SPARC Development Modes
+- **spec-pseudocode**: Requirements and algorithm planning
+- **architect**: System design and architecture
+- **tdd**: Test-driven development
+- **code**: Clean code implementation
+- **debug**: Troubleshooting and fixes
+- **security-review**: Security analysis
+- **integration**: Component integration
+- **docs-writer**: Documentation creation
+
+For detailed SPARC methodology, see the [CLAUDE.md](CLAUDE.md) file in the project root.
