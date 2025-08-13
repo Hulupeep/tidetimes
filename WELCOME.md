@@ -1,6 +1,21 @@
-# 🎉 Welcome to Your Claude AI Development Environment!
+# 🎉 Welcome to Your Agentic Codespace!
 
-**You have a complete AI coding setup with real tide data to build apps!**
+## ⚠️ SETUP IN PROGRESS (2-3 minutes)
+
+Claude Code is installing in the background. Check status anytime:
+
+```bash
+./check-setup.sh
+```
+
+### 🚀 You Can Start Now Using:
+```bash
+npx @anthropic-ai/claude-code "hello, what's in this project?"
+```
+
+**You'll see ✅ when everything is ready!**
+
+---
 
 ## 🏊 Quick Challenge: Build Your First App!
 
